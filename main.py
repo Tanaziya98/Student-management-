@@ -25,7 +25,7 @@ def add_student() :
         value=input("Enter "+field+": ")
         student_data.append(value)
 
-    with open(student_database ,"a",encoding="utf-8") as f:
+    with open(student_database ,"a") as f:
         writer=csv.writer(f) 
         writer.writerows([student_data])
     
@@ -38,7 +38,7 @@ def view_student():
     global student_database
 
     print("---Student Record---")
-    with open(student_database,"r",encoding="utf-8") as f:
+    with open(student_database,"r") as f:
         reader=csv.reader(f) 
         for x in student_fields:
             print(x, end='\t |')
@@ -56,7 +56,7 @@ def search_student():
 
     print("--- Search Student ---")
     roll = input("Enter roll no. to search: ")
-    with open(student_database, "r", encoding="utf-8") as f:
+    with open(student_database, "r") as f:
         reader = csv.reader(f)
         for row in reader:
             if len(row) > 0:
@@ -79,7 +79,7 @@ def update_student():
     roll=input("Enter roll_no to update:") 
     index_student=None
     updated_data=[]
-    with open(student_database,"r",encoding="utf-8") as f:
+    with open(student_database,"r") as f:
         reader=csv.reader(f)
         counter=0
         for row in reader:
@@ -98,7 +98,7 @@ def update_student():
 
     #check if the record is found or not
     if index_student is not None:
-        with open(student_database,"w",encoding="utf-8") as f:
+        with open(student_database,"w") as f:
             writer=csv.writer(f)
             writer.writerows(updated_data)
     else:
@@ -114,7 +114,7 @@ def delete_student():
     roll=input("Enter the roll_no to delete:")
     student_found=False
     updated_data=[]
-    with open(student_database,"r",encoding="utf-8") as f:
+    with open(student_database,"r") as f:
         reader=csv.reader(f)
         counter=0
         for row in reader:
@@ -125,7 +125,7 @@ def delete_student():
                 else:
                     student_found=True
     if student_found is True:
-        with open(student_database,"w",encoding="utf-8") as f:
+        with open(student_database,"w") as f:
             writer=csv.writer(f)
             writer.writerows(updated_data)
         print("Roll no",roll,"deleted successfully")
